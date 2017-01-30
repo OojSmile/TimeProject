@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div *ngIf="!employee">
+        <h1> Add new employee form</h1>
+        <form [formGroup]="addEmployeeForm" (ngSubmit)="addEmployee()">
+            <label>Please, enter your first name:</label>
+            <input formControlName="firstName" class="form-control" autofocus="autofocus" type="text" placeholder="Your first name" required>
+            <label>and last name:</label>
+            <input formControlName="lastName" class="form-control" autofocus="autofocus" type="text" placeholder="Your last name" required>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+    </div>
+    <div *ngIf="employee">
+        <br />
+        <p>New employee has been added</p>
+
+        <i>Please, remember your ID. It is necessary for further using of application</i>
+        
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Firts Name</th>
+                    <th>Last Name</th>
+                    <th>ID       </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{employee.firstName}}</td>
+                    <td>{{employee.lastName}}</td>
+                    <td>{{employee.id}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!project">
+        <h1> Add new project form</h1>
+        <form [formGroup]="addProjectForm" (ngSubmit)="addProject()">
+            <label>Please, enter the name of project:</label>
+            <input formControlName="name" class="form-control" autofocus="autofocus" type="text" placeholder="Name of project" required>
+            <label>and description:</label>
+            <input formControlName="description" class="form-control" autofocus="autofocus" type="text" placeholder="Description(max 150 chars)" required>
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+        <div *ngIf="error">
+            {{error}}
+
+        </div>
+    </div>
+    <div *ngIf="project">
+        <br />
+        <p>New project has been added</p>
+
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{project.name}}</td>
+                    <td>{{project.description}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

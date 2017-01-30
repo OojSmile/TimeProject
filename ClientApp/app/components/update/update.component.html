@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+   
+         <div *ngIf="!employeeProject">
+            <h1> Add information </h1>
+            <form [formGroup]="addForm" (ngSubmit)="addTiming(t.value)">
+                <label>Please, enter employee ID:</label>
+                <input formControlName="employeeID" class="form-control" autofocus="autofocus" type="number" placeholder="Employee ID" required>
+                <label> spent on project time in hours:</label>
+                <input formControlName="time" class="form-control" autofocus="autofocus" type="text" pattern="\d+(.\d{1})?" placeholder="Time (example: 4.0)" required>
+                <label> and select project name</label>
+                <select class="form-control" #t>
+                    <option *ngFor="let project of projects" value={{project.name}}>
+                        {{project.name}}
+                    </option>
+                </select>
+
+                <button type="submit" class="btn btn-success">Add</button>
+            </form>
+
+             <div *ngIf="error">
+                 {{error}}
+
+             </div>
+        </div>
+
+   
+
+        <div *ngIf="employeeProject">
+            <br />
+            <p>Information has been updated</p>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Project name</th>
+                        <th>Employee ID</th>
+                        <th>Time       </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{employeeProject.projectName}}</td>
+                        <td>{{employeeProject.employeeId}}</td>
+                        <td>{{employeeProject.time}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>

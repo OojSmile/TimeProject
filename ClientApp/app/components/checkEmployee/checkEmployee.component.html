@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div *ngIf="!projects">
+        <p> For more information enter the employee id</p>
+        <form [formGroup]="employeeInfoForm" (ngSubmit)="getEmployeeInfo()">
+            <input formControlName="employeeID" class="form-control" autofocus="autofocus" type="number" placeholder="Employee ID" required>
+
+            <button type="submit" class="btn btn-success">Add</button>
+        </form>
+
+        <table class='table' *ngIf="employeeProjectsInfo">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>ID</th>
+                    <th>All work time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let employee of employeeProjectsInfo">
+                    <td>{{ employee.firstName }}</td>
+                    <td>{{  employee.lastName }}</td>
+                    <td>{{  employee.employeeID }}</td>
+                    <td>{{  employee.time }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+
+    <div *ngIf="projects">
+        <table class='table' *ngIf="employeeProjectsInfo">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>All work time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects">
+                    <td>{{ project.projectName }}</td>
+                    <td>{{ project.time }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        </div>
+</body>
+</html>
